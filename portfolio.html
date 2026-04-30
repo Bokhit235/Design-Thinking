@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Bhavna Ambudkar — Design Thinking</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#1a1410;
+    --cream:#f5f0e8;
+    --warm:#e8dcc8;
+    --accent:#c4531a;
+    --gold:#d4960a;
+    --muted:#7a6e62;
+    --white:#fefcf8; }
+  *{margin:0;
+    padding:0;
+    box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;
+  background:var(--white);
+  color:var(--ink);
+  overflow-x:hidden;}
+  nav{position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.2rem 4rem;
+    background:rgba(254,252,248,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--warm);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:0.02em;}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-size:0.85rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--accent);}
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:5rem;}
+  .hero-left{background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem 5rem 6rem;position:relative;overflow:hidden;}
+  .hero-left::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border:2px solid rgba(196,83,26,0.3);border-radius:50%;}
+  .hero-left::after{content:'';position:absolute;bottom:40px;left:40px;width:180px;height:180px;border:1px solid rgba(212,150,10,0.25);border-radius:50%;}
+  .hero-tag{font-size:0.75rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+  .hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4vw,4.2rem);line-height:1.1;color:var(--cream);margin-bottom:1rem;}
+  .hero-name em{color:var(--gold);font-style:italic;}
+  .hero-subtitle{font-size:1rem;font-weight:300;color:rgba(232,220,200,0.7);line-height:1.6;max-width:380px;margin-bottom:3rem;}
+  .hero-cta{display:inline-flex;align-items:center;gap:0.8rem;padding:0.9rem 2rem;background:var(--accent);color:#fff;text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;transition:background 0.2s,transform 0.2s;}
+  .hero-cta:hover{background:#a94315;transform:translateX(4px);}
+  .hero-right{background:var(--cream);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:5rem 4rem;}
+  .profile-frame{width:320px;height:380px;background:var(--warm);position:relative;display:flex;align-items:center;justify-content:center;box-shadow:16px 16px 0 var(--accent);}
+  .profile-initials{font-family:'Playfair Display',serif;font-size:5rem;font-weight:700;color:var(--ink);opacity:0.18;user-select:none;}
+  .profile-badge{position:absolute;bottom:-20px;right:-20px;background:var(--ink);color:var(--cream);padding:1rem 1.4rem;font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;}
+  .hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;width:100%;max-width:340px;}
+  .stat{text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--accent);}
+  .stat-label{font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+  section{padding:6rem 6rem;}
+  .section-eyebrow{font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;display:flex;align-items:center;gap:1rem;}
+  .section-eyebrow::after{content:'';flex:1;height:1px;background:var(--accent);opacity:0.3;max-width:60px;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,2.8rem);line-height:1.2;margin-bottom:1rem;}
+  .section-subtitle{font-size:1rem;color:var(--muted);line-height:1.7;max-width:560px;margin-bottom:3.5rem;font-weight:300;}
+  #about{background:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+  .about-text p{font-size:1rem;line-height:1.8;color:var(--muted);font-weight:300;margin-bottom:1.2rem;}
+  .about-text p strong{color:var(--ink);font-weight:500;}
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--warm);border:1px solid var(--warm);}
+  .skill-card{background:var(--white);padding:1.5rem;transition:background 0.2s;}
+  .skill-card:hover{background:var(--cream);}
+  .skill-num{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent);opacity:0.5;font-style:italic;}
+  .skill-name{font-size:0.85rem;font-weight:500;color:var(--ink);margin-top:0.5rem;letter-spacing:0.03em;}
+  #stages{background:var(--ink);}
+  #stages .section-title{color:var(--cream);}
+  #stages .section-subtitle{color:rgba(232,220,200,0.6);}
+  #stages .section-eyebrow{color:var(--gold);}
+  #stages .section-eyebrow::after{background:var(--gold);}
+  .stages-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,0.08);}
+  .stage-card{background:var(--ink);padding:2.5rem 2rem;border-top:3px solid transparent;transition:border-color 0.2s,background 0.2s;}
+  .stage-card:hover{border-top-color:var(--accent);background:rgba(255,255,255,0.04);}
+  .stage-num{font-family:'Playfair Display',serif;font-size:3rem;color:rgba(255,255,255,0.08);font-weight:700;line-height:1;margin-bottom:1rem;}
+  .stage-icon{font-size:1.8rem;margin-bottom:1rem;}
+  .stage-name{font-size:0.9rem;font-weight:500;color:var(--cream);letter-spacing:0.05em;margin-bottom:0.7rem;}
+  .stage-desc{font-size:0.82rem;color:rgba(232,220,200,0.5);line-height:1.6;font-weight:300;}
+  #courses{background:var(--cream);}
+  .courses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+  .course-card{background:var(--white);padding:2rem;border-bottom:3px solid transparent;transition:border-color 0.25s,transform 0.25s;cursor:pointer;}
+  .course-card:hover{border-bottom-color:var(--accent);transform:translateY(-6px);}
+  .course-card .click-hint{font-size:0.72rem;color:var(--accent);font-weight:500;letter-spacing:0.08em;margin-top:1rem;display:flex;align-items:center;gap:0.4rem;opacity:0;transition:opacity 0.2s;}
+  .course-card:hover .click-hint{opacity:1;}
+  .course-level{font-size:0.7rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .course-title{font-family:'Playfair Display',serif;font-size:1.25rem;line-height:1.3;margin-bottom:0.8rem;}
+  .course-desc{font-size:0.85rem;color:var(--muted);line-height:1.7;font-weight:300;}
+  .course-meta{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--warm);display:flex;justify-content:space-between;font-size:0.78rem;color:var(--muted);font-weight:500;}
+  .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(26,20,16,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;}
+  .modal-overlay.active{display:flex;}
+  .modal{background:var(--white);max-width:600px;width:90%;max-height:85vh;overflow-y:auto;padding:3rem;position:relative;animation:modalIn 0.3s ease;}
+  @keyframes modalIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .modal-close{position:absolute;top:1.2rem;right:1.5rem;font-size:1.5rem;cursor:pointer;color:var(--muted);background:none;border:none;line-height:1;}
+  .modal-close:hover{color:var(--accent);}
+  .modal-level{font-size:0.72rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+  .modal-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--ink);margin-bottom:1.5rem;line-height:1.2;}
+  .modal-section{margin-bottom:1.5rem;}
+  .modal-section h4{font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+  .modal-section p,.modal-section li{font-size:0.9rem;color:var(--muted);line-height:1.7;font-weight:300;}
+  .modal-section ul{padding-left:1.2rem;}
+  .modal-section li{margin-bottom:0.3rem;}
+  .modal-meta{display:flex;gap:2rem;padding:1.2rem;background:var(--cream);margin-top:1.5rem;}
+  .modal-meta-item{text-align:center;}
+  .modal-meta-item .val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent);font-weight:700;}
+  .modal-meta-item .lbl{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:0.2rem;}
+  .weeks-list{display:flex;flex-direction:column;gap:0;}
+  .week-item{display:flex;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--warm);transition:background 0.15s;}
+  .week-item:hover{background:var(--cream);padding-left:0.5rem;border-radius:4px;}
+  .week-num{font-size:0.7rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;min-width:52px;padding-top:2px;}
+  .week-topic{font-size:0.88rem;font-weight:500;color:var(--ink);margin-bottom:0.2rem;}
+  .week-content{font-size:0.8rem;color:var(--muted);line-height:1.5;font-weight:300;}
+  .download-btn{display:flex;align-items:center;justify-content:center;gap:0.6rem;width:100%;padding:1rem;background:var(--ink);color:var(--cream);border:none;cursor:pointer;font-size:0.88rem;font-weight:500;letter-spacing:0.05em;margin-top:1.5rem;transition:background 0.2s;}
+  .download-btn:hover{background:var(--accent);}
+  #projects{background:var(--white);}
+  .projects-grid{display:grid;grid-template-columns:2fr 1fr;gap:2rem;}
+  .project-featured{background:var(--ink);padding:3rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:380px;position:relative;overflow:hidden;}
+  .project-featured::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(196,83,26,0.2) 0%,transparent 70%);}
+  .project-tag{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.8rem;}
+  .project-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cream);line-height:1.2;margin-bottom:0.8rem;}
+  .project-desc{font-size:0.88rem;color:rgba(232,220,200,0.6);font-weight:300;line-height:1.6;}
+  .project-stack{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.5rem;}
+  .tag{padding:0.3rem 0.8rem;border:1px solid rgba(255,255,255,0.15);font-size:0.72rem;color:rgba(232,220,200,0.7);letter-spacing:0.05em;}
+  .projects-side{display:flex;flex-direction:column;gap:2rem;}
+  .project-small{background:var(--cream);padding:2rem;flex:1;border-left:3px solid var(--warm);transition:border-color 0.2s;}
+  .project-small:hover{border-left-color:var(--accent);}
+  .project-small .project-tag{color:var(--muted);}
+  .project-small .project-title{font-size:1.1rem;color:var(--ink);}
+  .project-small .project-desc{color:var(--muted);}
+  #contact{background:var(--accent);color:#fff;text-align:center;padding:5rem 6rem;}
+  #contact .section-title{color:#fff;}
+  #contact .section-eyebrow{color:rgba(255,255,255,0.7);}
+  #contact .section-eyebrow::after{background:rgba(255,255,255,0.4);}
+  .contact-email{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.5rem);color:#fff;text-decoration:none;font-style:italic;border-bottom:2px solid rgba(255,255,255,0.4);padding-bottom:0.3rem;transition:border-color 0.2s;display:inline-block;margin:2rem 0;}
+  .contact-email:hover{border-color:#fff;}
+  .contact-info{font-size:0.9rem;color:rgba(255,255,255,0.7);font-weight:300;line-height:2;}
+  footer{background:var(--ink);color:rgba(232,220,200,0.4);padding:2rem 6rem;display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;letter-spacing:0.05em;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+  .hero-left>*{animation:fadeUp 0.7s ease forwards;opacity:0;}
+  .hero-tag{animation-delay:0.1s;}.hero-name{animation-delay:0.25s;}.hero-subtitle{animation-delay:0.4s;}.hero-cta{animation-delay:0.55s;}
+  @media(max-width:900px){nav{padding:1rem 2rem;}.hero{grid-template-columns:1fr;}.hero-right{display:none;}section{padding:4rem 2rem;}#about{grid-template-columns:1fr;gap:3rem;}.stages-grid{grid-template-columns:1fr 1fr;}.courses-grid{grid-template-columns:1fr;}.projects-grid{grid-template-columns:1fr;}footer{flex-direction:column;gap:1rem;text-align:center;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Dr. B. Ambudkar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#stages">Method</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Department of Computer Science Engineering · Batch 2023–27</p>
+    <h1 class="hero-name">Dr. Bhavna<br><em>Ambudkar</em></h1>
+    <p class="hero-subtitle">Intrapreneurial academician and practitioner of Human-Centred Design. Teaching Design Thinking as a discipline that bridges empathy with engineering.</p>
+    <a href="#contact" class="hero-cta">
+      Get in touch
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="profile-frame">
+      <span class="profile-initials">BA</span>
+      <div class="profile-badge">Design Thinking<br>Faculty</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">LinkedIn Followers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">DT Stages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-text">
+    <p class="section-eyebrow">About Me</p>
+    <h2 class="section-title">Solving Real Problems<br>Through Human Empathy</h2>
+    <p>I believe the best digital solutions start not with code, but with <strong>deep human understanding</strong>. My teaching integrates Stanford d.school methodology with real engineering challenges.</p>
+    <p>With over <strong>25 years of professional experience</strong> in Electronics and academia, I guide students through structured creative processes — from ambiguous problems to working prototypes that genuinely improve lives.</p>
+    <p>Based at <strong>Symbiosis Institute of Technology, Pune</strong>, my research focuses on applying Design Thinking within software development cycles, making it practical for the next generation of engineers.</p>
+  </div>
+  <div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-num">01</div><div class="skill-name">User Research</div></div>
+      <div class="skill-card"><div class="skill-num">02</div><div class="skill-name">Problem Framing</div></div>
+      <div class="skill-card"><div class="skill-num">03</div><div class="skill-name">Ideation Facilitation</div></div>
+      <div class="skill-card"><div class="skill-num">04</div><div class="skill-name">Rapid Prototyping</div></div>
+      <div class="skill-card"><div class="skill-num">05</div><div class="skill-name">Usability Testing</div></div>
+      <div class="skill-card"><div class="skill-num">06</div><div class="skill-name">Agile Integration</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="stages">
+  <p class="section-eyebrow">The Method</p>
+  <h2 class="section-title">Five Stages of Design Thinking</h2>
+  <p class="section-subtitle">A non-linear, iterative framework for solving complex, human-centred problems. Each stage informs and enriches the others.</p>
+  <div class="stages-grid">
+    <div class="stage-card"><div class="stage-num">01</div><div class="stage-icon">🫀</div><div class="stage-name">Empathise</div><div class="stage-desc">Conduct user interviews, observations, and immersive research to understand real needs beyond stated requirements.</div></div>
+    <div class="stage-card"><div class="stage-num">02</div><div class="stage-icon">🎯</div><div class="stage-name">Define</div><div class="stage-desc">Synthesise findings into a sharp, actionable problem statement — a Point of View that guides creative work.</div></div>
+    <div class="stage-card"><div class="stage-num">03</div><div class="stage-icon">💡</div><div class="stage-name">Ideate</div><div class="stage-desc">Generate a wide spectrum of ideas through structured brainstorming, challenging assumptions and constraints.</div></div>
+    <div class="stage-card"><div class="stage-num">04</div><div class="stage-icon">🔧</div><div class="stage-name">Prototype</div><div class="stage-desc">Build quick, low-fidelity representations to make ideas tangible. Fail fast, learn faster, iterate constantly.</div></div>
+    <div class="stage-card"><div class="stage-num">05</div><div class="stage-icon">✅</div><div class="stage-name">Test</div><div class="stage-desc">Validate solutions with real users, gather qualitative feedback, and return to earlier stages as needed.</div></div>
+  </div>
+</section>
+
+<section id="courses">
+  <p class="section-eyebrow">Teaching</p>
+  <h2 class="section-title">Courses Offered</h2>
+  <p class="section-subtitle">Structured programmes blending theory with hands-on project work for CSE students across all semesters.</p>
+  <div class="courses-grid">
+    <div class="course-card" onclick="openModal('c1')">
+      <div class="course-level">Semester IV · Core</div>
+      <div class="course-title">Introduction to Design Thinking</div>
+      <div class="course-desc">Foundations of human-centred design — empathy mapping, problem definition, and the creative confidence to ideate boldly.</div>
+      <div class="course-meta"><span>3 Credits</span><span>48 hrs</span></div>
+      <div class="click-hint">▶ View Course Details</div>
+    </div>
+    <div class="course-card" onclick="openModal('c2')">
+      <div class="course-level">Semester VI · Elective</div>
+      <div class="course-title">DT for Software Engineering</div>
+      <div class="course-desc">Integrating Design Thinking into Agile workflows. User stories, journey mapping, and usability testing for real products.</div>
+      <div class="course-meta"><span>3 Credits</span><span>48 hrs</span></div>
+      <div class="click-hint">▶ View Course Details</div>
+    </div>
+    <div class="course-card" onclick="openModal('c3')">
+      <div class="course-level">Semester VI · Project</div>
+      <div class="course-title">CA2 Design Thinking Project</div>
+      <div class="course-desc">Capstone applying all five DT stages to develop an innovative digital solution addressing a real-world community challenge.</div>
+      <div class="course-meta"><span>4 Credits</span><span>64 hrs</span></div>
+      <div class="click-hint">▶ View Course Details</div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-eyebrow">Student Work</p>
+  <h2 class="section-title">Featured Projects</h2>
+  <p class="section-subtitle">Selected Design Thinking projects from students applying the full five-stage process to meaningful problems.</p>
+  <div class="projects-grid" style="grid-template-columns:1fr;">
+    <div class="project-featured">
+      <div class="project-tag">Batch 2023–27 · Featured</div>
+      <h3 class="project-title">Student Study<br>Group Finder</h3>
+      <p class="project-desc">An app that helps students find and form study groups based on subject, schedule, and learning style — built after discovering through empathy research that 70% of students study alone despite wanting collaboration.</p>
+      <div class="project-stack">
+        <span class="tag">POV Statements</span><span class="tag">Journey Maps</span><span class="tag">A/B Testing</span><span class="tag">Iteration</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="section-eyebrow">Connect</p>
+  <h2 class="section-title">Let's Collaborate</h2>
+  <a class="contact-email" href="mailto:bhavna.ambudkar@sitpune.edu.in">bhavna.ambudkar@sitpune.edu.in</a>
+  <div class="contact-info">
+    Symbiosis Institute of Technology, Pune<br>
+    Department of Computer Science Engineering<br>
+    Academic Year 2025–26 · Batch 2023–27
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Dr. Bhavna Ambudkar · Design Thinking Faculty</span>
+  <span>Symbiosis Institute of Technology · Pune</span>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const courses={c1:{level:"Semester IV · Core",title:"Introduction to Design Thinking",desc:"This foundational course introduces students to the principles and mindset of human-centred design. Students develop creative confidence and learn to approach complex problems with empathy and curiosity.",credits:"3",hours:"48",assessment:"50% Project + 30% Presentation + 20% Reflection Journal",weeks:[{num:1,topic:"What is Design Thinking?",content:"History, origins (Stanford d.school, IDEO), comparison with traditional problem-solving, 5-stage overview."},{num:2,topic:"Stage 1 — Empathise",content:"User interviews, observation techniques, fly-on-the-wall method, empathy maps, avoiding assumptions."},{num:3,topic:"Understanding Users Deeply",content:"Affinity mapping, clustering insights, identifying latent needs, 'Why' ladder technique."},{num:4,topic:"Stage 2 — Define",content:"Point of View (POV) statements, How Might We (HMW) questions, persona creation, user journey maps."},{num:5,topic:"Problem Framing Workshop",content:"Hands-on workshop: synthesising real interview data into actionable POV statements."},{num:6,topic:"Stage 3 — Ideate",content:"Brainstorming rules, Brainwriting 6-3-5, Crazy 8s, SCAMPER, worst possible idea technique."},{num:7,topic:"Creative Confidence",content:"Overcoming creative blocks, divergent vs convergent thinking, idea selection methods (dot voting, impact/effort matrix)."},{num:8,topic:"Stage 4 — Prototype",content:"What is a prototype? Paper prototypes, storyboards, role-play prototypes, digital wireframes (Figma intro)."},{num:9,topic:"Prototyping Workshop",content:"Build a paper prototype in teams for a real campus problem. Peer feedback session."},{num:10,topic:"Stage 5 — Test",content:"Usability testing methods, think-aloud protocol, System Usability Scale (SUS), collecting qualitative feedback."},{num:11,topic:"Iteration & Refinement",content:"How to act on test feedback, iterating prototypes, when to pivot vs persist."},{num:12,topic:"Full DT Cycle — Case Studies",content:"Analyse 3 real-world DT case studies: IDEO shopping cart, Apple Human Interface, healthcare redesign."},{num:13,topic:"Project Presentations",content:"Teams present their full DT project: problem → empathy → define → ideate → prototype → test results."},{num:14,topic:"Reflection & Assessment",content:"Individual reflection journal submission, peer review, course debrief and Design Thinking mindset discussion."}],outcomes:["Apply all 5 stages of Design Thinking to a real problem","Conduct empathy interviews and synthesise findings into insights","Create POV statements, HMW questions, and user personas","Build and iterate paper and digital prototypes","Conduct usability tests and incorporate user feedback","Present a design solution with evidence-based reasoning"]},c2:{level:"Semester VI · Elective",title:"DT for Software Engineering",desc:"This elective bridges Design Thinking methodology with modern software development practices. Students learn to embed human-centred design within Agile and Scrum workflows to build better digital products.",credits:"3",hours:"48",assessment:"60% Group Project + 25% Individual Report + 15% Peer Review",weeks:[{num:1,topic:"DT Meets Software Engineering",content:"Why traditional engineering fails users, overview of human-centred software development, course roadmap."},{num:2,topic:"User Research for Engineers",content:"Contextual inquiry, user interviews for software, affinity diagrams, translating needs into requirements."},{num:3,topic:"Personas & User Stories",content:"Creating detailed engineering personas, writing user stories (As a… I want… So that…), story mapping."},{num:4,topic:"Customer Journey Mapping",content:"Mapping digital user journeys, identifying pain points in software flows, opportunity identification."},{num:5,topic:"DT Inside Agile Sprints",content:"Integrating DT phases into 2-week sprints, Sprint 0 research phase, design spikes, UX debt."},{num:6,topic:"Information Architecture",content:"Card sorting, site maps, navigation patterns, designing for findability and learnability."},{num:7,topic:"Wireframing & Prototyping Tools",content:"Figma deep dive: components, auto-layout, prototyping flows, developer handoff, design tokens."},{num:8,topic:"Usability Testing Methods",content:"Moderated vs unmoderated testing, remote testing tools, task scenario writing, recording and analysis."},{num:9,topic:"Heuristic Evaluation",content:"Nielsen's 10 heuristics applied to software interfaces, conducting expert reviews, severity ratings."},{num:10,topic:"A/B Testing & Analytics",content:"Designing A/B experiments, statistical significance, Google Analytics for UX, heat maps, session recordings."},{num:11,topic:"Accessibility & Inclusive Design",content:"WCAG 2.1 guidelines, screen reader testing, colour contrast, designing for different abilities."},{num:12,topic:"Design Systems",content:"Building component libraries, design tokens, documentation, maintaining consistency at scale."},{num:13,topic:"Project Demo Day",content:"Teams demo their software product with full DT documentation — research, wireframes, test results."},{num:14,topic:"Retrospective & Assessment",content:"Individual report submission, peer review session, reflections on integrating DT into engineering practice."}],outcomes:["Run a full Design Thinking sprint within an Agile project","Create user stories and journey maps grounded in empathy research","Design and prototype using Figma at an intermediate level","Conduct moderated usability tests and heuristic evaluations","Apply A/B testing and analytics to validate design decisions","Deliver a tested digital prototype with complete UX documentation"]},c3:{level:"Semester VI · Project",title:"CA2 Design Thinking Project",desc:"The capstone project requires students to apply all five DT stages to develop an innovative digital solution addressing a real-world community challenge. This is the CA2 project — the culmination of your Design Thinking education.",credits:"4",hours:"64",assessment:"40% Prototype + 35% Report + 25% Presentation",weeks:[{num:1,topic:"Project Kickoff & Topic Selection",content:"Overview of CA2 objectives, project options (Mental Health App, Portfolio Site, Consultancy Website, etc.), team formation."},{num:2,topic:"Stage 1 — Empathise",content:"Plan and conduct user research: minimum 5 interviews + survey with 20+ respondents. Submit research plan."},{num:3,topic:"Empathy Data Analysis",content:"Affinity mapping of research findings, identifying key patterns, creating empathy maps per persona."},{num:4,topic:"Stage 2 — Define",content:"Synthesise findings into POV statement, generate 5+ HMW questions, create 2 detailed user personas."},{num:5,topic:"Define Checkpoint",content:"Faculty review of POV statements and personas. Feedback session. Revise based on comments."},{num:6,topic:"Stage 3 — Ideate",content:"Structured ideation session: generate 50+ ideas using Brainwriting + Crazy 8s. Apply impact/effort matrix."},{num:7,topic:"Concept Selection & Storyboard",content:"Select top 3 concepts, create storyboards, define MVP scope, present concept to class for feedback."},{num:8,topic:"Stage 4 — Prototype (Paper)",content:"Build paper wireframes for all key screens/flows. Conduct peer walkthrough. Document iteration."},{num:9,topic:"Prototype (Digital)",content:"Convert paper wireframes to Figma or HTML/CSS prototype. Focus on core user flows only."},{num:10,topic:"Stage 5 — Test (Round 1)",content:"Test prototype with minimum 8 users. Use think-aloud protocol. Record SUS scores and qualitative notes."},{num:11,topic:"Iteration Based on Testing",content:"Analyse test results, prioritise fixes, implement changes to prototype. Document all iterations."},{num:12,topic:"Test (Round 2) & Final Prototype",content:"Second round of testing with 5 users. Final prototype polish. Begin writing project report."},{num:13,topic:"Report Submission",content:"Submit complete CA2 project report: all 5 stages documented with evidence, screenshots, and reflections."},{num:14,topic:"Final Presentation",content:"15-minute team presentation to faculty panel: problem, process, prototype demo, test results, learnings."}],outcomes:["Deliver a complete end-to-end Design Thinking project","Build and test a functional digital product prototype","Produce full academic documentation of the DT process","Conduct two rounds of user testing and iterate accordingly","Present findings professionally to a faculty panel","Reflect critically on the Design Thinking process and personal growth"]}};
+
+function generateSyllabus(c){const content=`COURSE SYLLABUS\n${'='.repeat(50)}\n\n${c.title}\n${c.level}\nCredits: ${c.credits} | Hours: ${c.hours}\n\nASSESSMENT: ${c.assessment}\n\n${'='.repeat(50)}\nCOURSE DESCRIPTION\n${'='.repeat(50)}\n${c.desc}\n\n${'='.repeat(50)}\nWEEKLY SCHEDULE\n${'='.repeat(50)}\n${c.weeks.map(w=>`Week ${w.num}: ${w.topic}\n  ${w.content}`).join('\n\n')}\n\n${'='.repeat(50)}\nLEARNING OUTCOMES\n${'='.repeat(50)}\n${c.outcomes.map((o,i)=>`${i+1}. ${o}`).join('\n')}\n\n${'='.repeat(50)}\nSymbiosis Institute of Technology, Pune\nDepartment of CSE | Academic Year 2025-26 | Batch 2023-27\nFaculty: Dr. Bhavna Ambudkar`;const blob=new Blob([content],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`Syllabus_${c.title.replace(/\s+/g,'_')}.txt`;a.click();}
+
+function openModal(id){const c=courses[id];document.getElementById('modalContent').innerHTML=`<div class="modal-level">${c.level}</div><div class="modal-title">${c.title}</div><div class="modal-meta"><div class="modal-meta-item"><div class="val">${c.credits}</div><div class="lbl">Credits</div></div><div class="modal-meta-item"><div class="val">${c.hours}h</div><div class="lbl">Total Hours</div></div><div class="modal-meta-item"><div class="val">${c.weeks.length}</div><div class="lbl">Weeks</div></div></div><div class="modal-section"><h4>Description</h4><p>${c.desc}</p></div><div class="modal-section"><h4>📅 Weekly Course Content</h4><div class="weeks-list">${c.weeks.map(w=>`<div class="week-item"><div class="week-num">Week ${w.num}</div><div class="week-body"><div class="week-topic">${w.topic}</div><div class="week-content">${w.content}</div></div></div>`).join('')}</div></div><div class="modal-section"><h4>🎯 Learning Outcomes</h4><ul>${c.outcomes.map(o=>`<li>${o}</li>`).join('')}</ul></div><div class="modal-section"><h4>📊 Assessment</h4><p>${c.assessment}</p></div><button class="download-btn" onclick="generateSyllabus(courses['${id}'])">⬇ Download Syllabus</button>`;document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden';}
+function closeModal(e){if(e.target===document.getElementById('modalOverlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
+</script>
+</body>
+</html>
